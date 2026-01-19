@@ -14,8 +14,8 @@ class Main {
                 System.out.println("2. Wypisz studentów");
                 System.out.println("3. Wyszukaj studenta po imieniu");
                 System.out.println("4. Usuń studenta po imieniu");
-                System.out.println("5. Zaaktualizuj wiek wybranego studenta");
-                System.out.println("0. Wyjście");
+                System.out.println("5. Zaaktualizuj dane studenta");
+                System.out.println("0. Wyjście ");
                 System.out.print("Twój wybór: ");
 
                 int choice = scanner.nextInt();
@@ -29,20 +29,20 @@ class Main {
                         int age = scanner.nextInt();
 
                         System.out.print("Podaj datę urodzenia (np. 2000-01-01): ");
-                        String dob = scanner.next(); 
+                        String dob = scanner.next();
 
-                        s.addStudent(new Student(name, age, dob)); 
+                        s.addStudent(new Student(name, age, dob));
                         break;
 
                     case 2:
                         var students = s.getStudents();
-                        System.out.println("Lista studentów:");
+                        System.out.println("Lista studentów: \n");
                         for (Student current : students) {
                             System.out.println(current.ToString());
                         }
                         break;
-                        
-                    case 3: 
+
+                    case 3:
                         System.out.print("Podaj imię do wyszukania: ");
                         String searchName = scanner.next();
                         Student foundStudent = s.findStudentByName(searchName);
@@ -53,14 +53,13 @@ class Main {
                         break;
 
                     case 4:
-                        
+
                         System.out.print("Podaj imię studenta do usunięcia: ");
                         String deleteName = scanner.next();
                         boolean deleted = s.deleteStudentByName(deleteName);
-                        if(deleted) {
+                        if (deleted) {
                             System.out.println("Student został usunięty.");
-                        } 
-                        else {
+                        } else {
                             System.out.println("Nie znaleziono studenta o podanym imieniu.");
                         }
                         break;
@@ -68,14 +67,14 @@ class Main {
                     case 5:
                         System.out.print("Podaj imię studenta do edycji: ");
                         String updateName = scanner.next();
-                       
-                        if(s.findStudentByName(updateName) != null) {
+
+                        if (s.findStudentByName(updateName) != null) {
                             System.out.print("Podaj nowy wiek: ");
                             int newAge = scanner.nextInt();
                             s.updateStudentAge(updateName, newAge);
                             System.out.println("Wiek zaktualizowany.");
                         } else {
-                            System.out.println("Nie ma takiego studenta.");
+                            System.out.println("Nie znaleziono studenta o podanym imieniu.");
                         }
                         break;
 
