@@ -29,8 +29,15 @@ public class Service {
     reader.close();
     return ret;
   }
+  
 
-  public Student findStudentByName(String name) {
-    return null;
+  public Student findStudentByName(String name) throws IOException {
+      var students = getStudents();
+      for(Student s : students) {
+          if(s.GetName().equals(name)) {
+              return s;
+          }
+      }
+      return null;
   }
 }

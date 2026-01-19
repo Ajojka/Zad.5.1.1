@@ -12,6 +12,7 @@ class Main {
                 System.out.println("\n Wybierz opcję:");
                 System.out.println("1. Dodaj studenta (nowy format)");
                 System.out.println("2. Wypisz studentów");
+                System.out.println("3. Wyszukaj studenta po imieniu");
                 System.out.println("0. Wyjście");
                 System.out.print("Twój wybór: ");
 
@@ -38,6 +39,17 @@ class Main {
                             System.out.println(current.ToString());
                         }
                         break;
+                        
+                    case 3: 
+                        System.out.print("Podaj imię do wyszukania: ");
+                        String searchName = scanner.next();
+                        Student foundStudent = s.findStudentByName(searchName);
+                        if (foundStudent != null)
+                            System.out.println("Znaleziono studenta: " + foundStudent.ToString());
+                        else
+                            System.out.println("Nie znaleziono studenta o podanym imieniu.");
+                        break;
+                    
 
 
                     case 0:
