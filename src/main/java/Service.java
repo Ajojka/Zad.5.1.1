@@ -41,16 +41,6 @@ public class Service {
       return null;
   }
   
-  private void rewriteFile(ArrayList<Student> students) throws IOException {
-      var f = new FileWriter("db.txt", false);
-      var b = new BufferedWriter(f);
-      for(Student s : students) {
-          b.write(s.ToString());
-          b.newLine();
-      }
-      b.close();
-  }
-
   public boolean deleteStudentByName(String name) throws IOException {
       var students = getStudents();
       var studentToRemove = findStudentByName(name);
@@ -66,5 +56,35 @@ public class Service {
           return true;
       }
       return false;
+  }
+
+  private void rewriteFile(ArrayList<Student> students) throws IOException {
+      var f = new FileWriter("db.txt", false);
+      var b = new BufferedWriter(f);
+      for(Student s : students) {
+          b.write(s.ToString());
+          b.newLine();
+      }
+      b.close();
+  }
+
+  public boolean updateStudentAge(String name, int newAge) throws IOException {
+    var students = getStudents();
+    boolean found = false;
+    var updatedStudents = new ArrayList<Student>();
+
+    for(Student s : students) {
+        if(s.GetName().equals(name)) {
+            updatedStudents.add(new Student(s.GetName(), newAge, s.GetDateOfBirth()));
+            found = true;
+        } else {
+            updatedStudents.add(s);
+        }
+    }
+
+    if(found) {
+        rewriteFile(updatedStudents);
+    }
+    return found;
   }
 }

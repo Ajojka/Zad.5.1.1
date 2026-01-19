@@ -14,6 +14,7 @@ class Main {
                 System.out.println("2. Wypisz studentów");
                 System.out.println("3. Wyszukaj studenta po imieniu");
                 System.out.println("4. Usuń studenta po imieniu");
+                System.out.println("5. Zaaktualizuj wiek wybranego studenta");
                 System.out.println("0. Wyjście");
                 System.out.print("Twój wybór: ");
 
@@ -63,8 +64,20 @@ class Main {
                             System.out.println("Nie znaleziono studenta o podanym imieniu.");
                         }
                         break;
-                    
 
+                    case 5:
+                        System.out.print("Podaj imię studenta do edycji: ");
+                        String updateName = scanner.next();
+                       
+                        if(s.findStudentByName(updateName) != null) {
+                            System.out.print("Podaj nowy wiek: ");
+                            int newAge = scanner.nextInt();
+                            s.updateStudentAge(updateName, newAge);
+                            System.out.println("Wiek zaktualizowany.");
+                        } else {
+                            System.out.println("Nie ma takiego studenta.");
+                        }
+                        break;
 
                     case 0:
                         running = false;
