@@ -40,4 +40,31 @@ public class Service {
       }
       return null;
   }
+  
+  private void rewriteFile(ArrayList<Student> students) throws IOException {
+      var f = new FileWriter("db.txt", false);
+      var b = new BufferedWriter(f);
+      for(Student s : students) {
+          b.write(s.ToString());
+          b.newLine();
+      }
+      b.close();
+  }
+
+  public boolean deleteStudentByName(String name) throws IOException {
+      var students = getStudents();
+      var studentToRemove = findStudentByName(name);
+
+      if(studentToRemove != null) {
+          var newStudents = new ArrayList<Student>();
+          for(Student s : students) {
+              if(!s.GetName().equals(name)) {
+                  newStudents.add(s);
+              }
+          }
+          rewriteFile(newStudents);
+          return true;
+      }
+      return false;
+  }
 }
