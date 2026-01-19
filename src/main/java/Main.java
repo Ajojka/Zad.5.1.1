@@ -25,7 +25,7 @@ class Main {
                         System.out.print("Podaj wiek: ");
                         int age = scanner.nextInt();
 
-                        System.out.print("Podaj datę urodzenia (np. 1999-01-01): ");
+                        System.out.print("Podaj datę urodzenia (np. 2000-01-01): ");
                         String dob = scanner.next(); 
 
                         s.addStudent(new Student(name, age, dob)); 
@@ -38,6 +38,7 @@ class Main {
                             System.out.println(current.ToString());
                         }
                         break;
+
 
                     case 0:
                         running = false;
